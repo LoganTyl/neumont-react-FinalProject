@@ -1,21 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import MainPage from './screens/MainPage';
+import PokedexPage from './screens/Pokedex';
+import PedometerPage from './screens/EggPedometer';
+import PokeDetails from './screens/PokemonDetails';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createStackNavigator();
+
+const App = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="Home"
+                    component={MainPage}
+                />
+                <Stack.Screen
+                    name="Pokedex"
+                    component={PokedexPage}
+                />
+                <Stack.Screen
+                    name="Pokemon Go Distance Tracker"
+                    component={PedometerPage}
+                />
+                <Stack.Screen
+                    name="Pokemon Details"
+                    component={PokeDetails}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+};
+
+export default App;
